@@ -1,9 +1,9 @@
 //this code demonstrates how to read data from thingspeak to sc via a small python script
-
+//thanks to Fredrik Olofsson for the basic code
 /*
 //open terminal, cd to this directory and run...
-python scThingSpeak3.py 6123
-//replace 6123 with your channel number
+python scThingSpeak3.py '....'
+//replace '....' with your channel number
 keep it running in the background
 */
 
@@ -66,14 +66,14 @@ Routine.run({
 			0.1.wait;
 			note2 = Synth(\fm1, [
 					\freq, ~freq*2.5,
-				    \carPartial, 1,
-				    \modPartial, 2,
-				    \index, 1,
-				    \amp, 0.05,
-				    \freqmul, 1.6,
-				    \atkdur, 0.01,
-				    \sus, 0.1,
-				    \decdur, 0.8]);
+				    	\carPartial, 1,
+				    	\modPartial, 2,
+				    	\index, 1,
+				    	\amp, 0.05,
+				    	\freqmul, 1.6,
+				    	\atkdur, 0.01,
+				    	\sus, 0.1,
+				    	\decdur, 0.8]);
 			1.wait;
 			note3 = Synth(\fm1, [
 					\freq, ~freq*3,
