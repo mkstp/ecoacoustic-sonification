@@ -12,6 +12,9 @@ keep it running in the background
 ~amp
 ~rate
 
+
+/*define a fm synth for temperature sonification with data gathered from a TMP36/ESP8266 and
+collected via thingspeak - Marc St. Pierre*/
 (
 SynthDef.new(\fm1, {
 	arg freq, carPartial, modPartial, index, amp, freqmul, atkdur, sus, decdur;
@@ -41,6 +44,8 @@ SynthDef.new(\fm1, {
 }).add;
 )
 
+
+//this sonification is optimised for warmer climates like in California or Beijing
 (
 Routine.run({
 	inf.do{
@@ -74,18 +79,7 @@ Routine.run({
 				    \atkdur, 0.01,
 				    \sus, 0.1,
 				    \decdur, 0.8]);
-			1.wait;
-			note3 = Synth(\fm1, [
-					\freq, ~freq*3,
-					\carPartial, 1,
-					\modPartial, 1,
-					\index, 1,
-					\amp, 0.1,
-					\freqmul, 1.4,
-					\atkdur, 0.05,
-					\sus, 0,
-					\decdur, 0.85]);
-			2.wait;
+			(~freq.reciprocal * 40).wait; //intervals get shorter as temperature increases
 		});
 	};
 });
